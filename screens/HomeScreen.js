@@ -22,11 +22,14 @@ export default class HomeScreen extends Component{
     //url = "https://rupinwhitehatjr.github.io/dictionary/searchKeyword.json"
     //url = "https://rupinwhitehatjr.github.io/dictionary/"+ +".json"
     //url = "https://rupinwhitehatjr.github.io/dictionary/"+searchKeyword+".json"
-    url = "https://rupinwhitehatjr.github.io/dictionary/"+word+".json"
+
+    // API original em Inglês
+    url = "https://rupinwhitehatjr.github.io/dictionary/"+word+".json" 
 
     //API traduzida (contém 5 palavras: aplicativo, aprendizado, escola, linguagem e professora)
     //url = "https://thiagosaraiva-git.github.io/dictionary-master/"+word+".json"
     
+
     return fetch(url)
     .then((data)=>{
       if(data.status===200)
@@ -81,10 +84,34 @@ export default class HomeScreen extends Component{
           />
           <View style={styles.inputBoxContainer}>
         
-      
-        
-       
-        
+          <Text 
+            onChangeText={text => {
+                this.setState({
+                  text: text,
+                  isSearchPressed: false,
+                  word  : "Carregando...",
+                  lexicalCategory :'',
+                  examples : [],
+                  definition : ""
+                });
+            }}
+          />
+    
+        {
+        <TouchableOpacity 
+            onChangeText={text => {
+                this.setState({
+                  text: text,
+                  isSearchPressed: false,
+                  word  : "Carregando...",
+                  lexicalCategory :'',
+                  examples : [],
+                  definition : ""
+                });
+            }}
+          /> 
+        }
+        {
             <TextInput
               style={styles.inputBox}
               onChangeText={text => {
@@ -99,7 +126,7 @@ export default class HomeScreen extends Component{
               }}
               value={this.state.text}
             />
-            
+            }
             <TouchableOpacity
               style={styles.searchButton}
               onPress={() => {
